@@ -5,18 +5,7 @@ package auth;
 option go_package = "github.com/keremeti/api-contracts/gen/auth";
 
 service Auth {
-  rpc Login (LoginRequest) returns (LoginResponse);
   rpc Authorize (AuthorizeRequest) returns (AuthorizeResponse);
-}
-
-message LoginRequest {
-    string phone = 1;
-    string pass = 2;
-}
-
-message LoginResponse {
-    string token = 1;
-    string refresh = 2;
 }
 
 message AuthorizeRequest {
