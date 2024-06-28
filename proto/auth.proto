@@ -20,9 +20,10 @@ message LoginResponse {
 
 message AuthorizeRequest {
     string token = 1;
+    string refresh = 2;
 }
 
 message AuthorizeResponse {
-    string Id   = 1;
-	string Role = 2;
+    string id   = 1;
+	string role = 2;
 }
