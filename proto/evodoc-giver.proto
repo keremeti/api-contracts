@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package evotor_documents;
+
+import "google/protobuf/any.proto";
+
+option go_package = "github.com/keremeti/api-contracts/gen/evodoc-giver";
+
+service EvodocGiver {
+  rpc GetList (DocListRequest) returns (DocResponse);
+  rpc Get (DocRequest) returns (DocsResponse);
+}
+
+message DocListRequest {
+  string token = 1;
+  string Token = 2;   
+	string StoreId = 3;
+	string DeviceId = 4;
+	int64 Since = 5;
+	int64 Until = 6;
+	string Types = 7;
+	string Cursor = 8;
+}
+
+message DocRequest {
+  string id = 1;
+}
+
+message DocResponse {
+  string type = 1;
+  repeated google.protobuf.Any doc = 2;
+}
+
+message DocsResponse {
+  repeated DocResponse docs = 1;
+}
