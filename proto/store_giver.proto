@@ -28,7 +28,7 @@ message BriefStore {
 
 message BriefParametersResponse {
   StateResponse state = 1;
-  string has_requisites = 2;
+  bool has_requisites = 2;
   string balance = 3;
 }
 
