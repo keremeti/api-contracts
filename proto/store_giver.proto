@@ -16,6 +16,7 @@ message PurchaserRequest {
 
 message BriefStoreResponse {
   repeated BriefStore stores = 1;
+  Pagination pagination = 2;
 }
 
 message BriefStore {
@@ -34,4 +35,13 @@ message BriefParametersResponse {
 message StateResponse {
   bool is_active = 1;
   string comment = 2;
+}
+
+message Pagination {
+  bool	has_next = 1;
+	bool has_previous = 2;
+	int32 record_per_page = 3;
+	int32 current_page = 4;  
+	int32 total_page = 5;
+	int32 total_count = 6;
 }
