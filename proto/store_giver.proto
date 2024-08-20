@@ -4,7 +4,7 @@ package store_giver;
 
 option go_package = "github.com/keremeti/api-contracts/gen/store_giver";
 
-service EvodocGiver {
+service StoreGiver {
   rpc GetByPurchaser (PurchaserRequest) returns (BriefStoreResponse);
 }
 
