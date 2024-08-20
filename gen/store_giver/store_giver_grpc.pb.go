@@ -19,90 +19,90 @@ import (
 const _ = grpc.SupportPackageIsVersion8
 
 const (
-	EvodocGiver_GetByPurchaser_FullMethodName = "/store_giver.EvodocGiver/GetByPurchaser"
+	StoreGiver_GetByPurchaser_FullMethodName = "/store_giver.StoreGiver/GetByPurchaser"
 )
 
-// EvodocGiverClient is the client API for EvodocGiver service.
+// StoreGiverClient is the client API for StoreGiver service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type EvodocGiverClient interface {
+type StoreGiverClient interface {
 	GetByPurchaser(ctx context.Context, in *PurchaserRequest, opts ...grpc.CallOption) (*BriefStoreResponse, error)
 }
 
-type evodocGiverClient struct {
+type storeGiverClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewEvodocGiverClient(cc grpc.ClientConnInterface) EvodocGiverClient {
-	return &evodocGiverClient{cc}
+func NewStoreGiverClient(cc grpc.ClientConnInterface) StoreGiverClient {
+	return &storeGiverClient{cc}
 }
 
-func (c *evodocGiverClient) GetByPurchaser(ctx context.Context, in *PurchaserRequest, opts ...grpc.CallOption) (*BriefStoreResponse, error) {
+func (c *storeGiverClient) GetByPurchaser(ctx context.Context, in *PurchaserRequest, opts ...grpc.CallOption) (*BriefStoreResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(BriefStoreResponse)
-	err := c.cc.Invoke(ctx, EvodocGiver_GetByPurchaser_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, StoreGiver_GetByPurchaser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// EvodocGiverServer is the server API for EvodocGiver service.
-// All implementations must embed UnimplementedEvodocGiverServer
+// StoreGiverServer is the server API for StoreGiver service.
+// All implementations must embed UnimplementedStoreGiverServer
 // for forward compatibility
-type EvodocGiverServer interface {
+type StoreGiverServer interface {
 	GetByPurchaser(context.Context, *PurchaserRequest) (*BriefStoreResponse, error)
-	mustEmbedUnimplementedEvodocGiverServer()
+	mustEmbedUnimplementedStoreGiverServer()
 }
 
-// UnimplementedEvodocGiverServer must be embedded to have forward compatible implementations.
-type UnimplementedEvodocGiverServer struct {
+// UnimplementedStoreGiverServer must be embedded to have forward compatible implementations.
+type UnimplementedStoreGiverServer struct {
 }
 
-func (UnimplementedEvodocGiverServer) GetByPurchaser(context.Context, *PurchaserRequest) (*BriefStoreResponse, error) {
+func (UnimplementedStoreGiverServer) GetByPurchaser(context.Context, *PurchaserRequest) (*BriefStoreResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetByPurchaser not implemented")
 }
-func (UnimplementedEvodocGiverServer) mustEmbedUnimplementedEvodocGiverServer() {}
+func (UnimplementedStoreGiverServer) mustEmbedUnimplementedStoreGiverServer() {}
 
-// UnsafeEvodocGiverServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to EvodocGiverServer will
+// UnsafeStoreGiverServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to StoreGiverServer will
 // result in compilation errors.
-type UnsafeEvodocGiverServer interface {
-	mustEmbedUnimplementedEvodocGiverServer()
+type UnsafeStoreGiverServer interface {
+	mustEmbedUnimplementedStoreGiverServer()
 }
 
-func RegisterEvodocGiverServer(s grpc.ServiceRegistrar, srv EvodocGiverServer) {
-	s.RegisterService(&EvodocGiver_ServiceDesc, srv)
+func RegisterStoreGiverServer(s grpc.ServiceRegistrar, srv StoreGiverServer) {
+	s.RegisterService(&StoreGiver_ServiceDesc, srv)
 }
 
-func _EvodocGiver_GetByPurchaser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _StoreGiver_GetByPurchaser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(PurchaserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(EvodocGiverServer).GetByPurchaser(ctx, in)
+		return srv.(StoreGiverServer).GetByPurchaser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: EvodocGiver_GetByPurchaser_FullMethodName,
+		FullMethod: StoreGiver_GetByPurchaser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EvodocGiverServer).GetByPurchaser(ctx, req.(*PurchaserRequest))
+		return srv.(StoreGiverServer).GetByPurchaser(ctx, req.(*PurchaserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// EvodocGiver_ServiceDesc is the grpc.ServiceDesc for EvodocGiver service.
+// StoreGiver_ServiceDesc is the grpc.ServiceDesc for StoreGiver service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var EvodocGiver_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "store_giver.EvodocGiver",
-	HandlerType: (*EvodocGiverServer)(nil),
+var StoreGiver_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "store_giver.StoreGiver",
+	HandlerType: (*StoreGiverServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "GetByPurchaser",
-			Handler:    _EvodocGiver_GetByPurchaser_Handler,
+			Handler:    _StoreGiver_GetByPurchaser_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
