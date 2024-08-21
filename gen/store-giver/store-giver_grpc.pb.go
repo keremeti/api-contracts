@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.4.0
 // - protoc             v5.27.1
-// source: store_giver.proto
+// source: store-giver.proto
 
 package store_giver
 
@@ -106,5 +106,5 @@ var StoreGiver_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "store_giver.proto",
+	Metadata: "store-giver.proto",
 }
