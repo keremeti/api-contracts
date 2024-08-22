@@ -19,6 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion8
 
 const (
+	StoreGiver_GetByFilter_FullMethodName    = "/store_giver.StoreGiver/GetByFilter"
 	StoreGiver_GetByPurchaser_FullMethodName = "/store_giver.StoreGiver/GetByPurchaser"
 )
 
@@ -26,7 +27,8 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type StoreGiverClient interface {
-	GetByPurchaser(ctx context.Context, in *PurchaserRequest, opts ...grpc.CallOption) (*BriefStoreResponse, error)
+	GetByFilter(ctx context.Context, in *FilterRequest, opts ...grpc.CallOption) (*StoreResponse, error)
+	GetByPurchaser(ctx context.Context, in *PurchaserRequest, opts ...grpc.CallOption) (*PurchaserStoreResponse, error)
 }
 
 type storeGiverClient struct {
@@ -37,9 +39,19 @@ func NewStoreGiverClient(cc grpc.ClientConnInterface) StoreGiverClient {
 	return &storeGiverClient{cc}
 }
 
-func (c *storeGiverClient) GetByPurchaser(ctx context.Context, in *PurchaserRequest, opts ...grpc.CallOption) (*BriefStoreResponse, error) {
+func (c *storeGiverClient) GetByFilter(ctx context.Context, in *FilterRequest, opts ...grpc.CallOption) (*StoreResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(BriefStoreResponse)
+	out := new(StoreResponse)
+	err := c.cc.Invoke(ctx, StoreGiver_GetByFilter_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *storeGiverClient) GetByPurchaser(ctx context.Context, in *PurchaserRequest, opts ...grpc.CallOption) (*PurchaserStoreResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PurchaserStoreResponse)
 	err := c.cc.Invoke(ctx, StoreGiver_GetByPurchaser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -51,7 +63,8 @@ func (c *storeGiverClient) GetByPurchaser(ctx context.Context, in *PurchaserRequ
 // All implementations must embed UnimplementedStoreGiverServer
 // for forward compatibility
 type StoreGiverServer interface {
-	GetByPurchaser(context.Context, *PurchaserRequest) (*BriefStoreResponse, error)
+	GetByFilter(context.Context, *FilterRequest) (*StoreResponse, error)
+	GetByPurchaser(context.Context, *PurchaserRequest) (*PurchaserStoreResponse, error)
 	mustEmbedUnimplementedStoreGiverServer()
 }
 
@@ -59,7 +72,10 @@ type StoreGiverServer interface {
 type UnimplementedStoreGiverServer struct {
 }
 
-func (UnimplementedStoreGiverServer) GetByPurchaser(context.Context, *PurchaserRequest) (*BriefStoreResponse, error) {
+func (UnimplementedStoreGiverServer) GetByFilter(context.Context, *FilterRequest) (*StoreResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetByFilter not implemented")
+}
+func (UnimplementedStoreGiverServer) GetByPurchaser(context.Context, *PurchaserRequest) (*PurchaserStoreResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetByPurchaser not implemented")
 }
 func (UnimplementedStoreGiverServer) mustEmbedUnimplementedStoreGiverServer() {}
@@ -73,6 +89,24 @@ type UnsafeStoreGiverServer interface {
 
 func RegisterStoreGiverServer(s grpc.ServiceRegistrar, srv StoreGiverServer) {
 	s.RegisterService(&StoreGiver_ServiceDesc, srv)
+}
+
+func _StoreGiver_GetByFilter_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FilterRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StoreGiverServer).GetByFilter(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StoreGiver_GetByFilter_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StoreGiverServer).GetByFilter(ctx, req.(*FilterRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _StoreGiver_GetByPurchaser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -100,6 +134,10 @@ var StoreGiver_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "store_giver.StoreGiver",
 	HandlerType: (*StoreGiverServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetByFilter",
+			Handler:    _StoreGiver_GetByFilter_Handler,
+		},
 		{
 			MethodName: "GetByPurchaser",
 			Handler:    _StoreGiver_GetByPurchaser_Handler,
