@@ -21,22 +21,22 @@ message FilterRequest {
   repeated string external_ids = 3;
 	int32 limit = 4; 
 	int32 page = 5;
-  FilterParametersRequest parameters = 6;
+  FilterParameters parameters = 6;
 }
 
-message FilterParametersRequest {
+message FilterParameters {
   optional bool is_active = 1;
   optional bool has_balance = 2;
   optional bool has_location = 3;
 	optional bool was_last_day_ping = 4; 
 	optional bool has_requisites = 5;
-  optional LocationRequest location = 6;
-  optional RequisitesRequest requisites = 7;
+  optional FilterLocation location = 6;
+  optional FilterRequisites requisites = 7;
 }
-message RequisitesRequest {
+message FilterRequisites {
   repeated string inns = 1;
 }
-message LocationRequest {
+message FilterLocation {
   repeated string cities = 1;
   repeated int32 regions = 2;
 }
@@ -46,13 +46,13 @@ message StoreResponse {
   Pagination pagination = 2;
 }
 message Store {
-  StateResponse state = 1;
-  optional LocationResponse location = 2;
+  State state = 1;
+  optional Location location = 2;
   bool was_last_day_ping = 3;
   bool has_requisites = 4;
   bool has_balance = 5;
 }
-message LocationResponse {
+message Location {
   optional string city = 1;
   optional string region = 2;
   optional string region_type = 3;
@@ -67,16 +67,16 @@ message PurchaserStore {
   int32 id = 1;
   optional string title = 2;
   optional string address = 3;
-  PurchaserParametersResponse parameters = 4;
+  PurchaserParameters parameters = 4;
 }
 
-message PurchaserParametersResponse {
-  StateResponse state = 1;
+message PurchaserParameters {
+  State state = 1;
   bool has_requisites = 2;
   string balance = 3;
 }
 
-message StateResponse {
+message State {
   bool is_active = 1;
   string comment = 2;
 }
