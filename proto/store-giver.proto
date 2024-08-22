@@ -19,9 +19,10 @@ message FilterRequest {
   optional string title = 1;
   optional string address = 2;
   repeated string external_ids = 3;
-	int32 limit = 4; 
-	int32 page = 5;
-  FilterParameters parameters = 6;
+  FilterParameters parameters = 4;
+	int32 limit = 5; 
+	int32 page = 6;
+	string sort = 7;
 }
 
 message FilterParameters {
