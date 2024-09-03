@@ -20,13 +20,13 @@ message Device {
     string id = 1;
 	optional string name = 2;
     string store_id = 3;
-    int64 timezone_offset = 5;
-    string  imei = 6;
-    string firmware_version = 7;
-    Location location = 8;
+    optional int64 timezone_offset = 5;
+    optional string  imei = 6;
+    optional string firmware_version = 7;
+    optional Location location = 8;
 	string user_id = 9;
-    string serial_number = 10;
-    string device_model = 11;
+    optional string serial_number = 10;
+    optional string device_model = 11;
     int64 created_at = 12;
     int64 updated_at = 13;
 }
