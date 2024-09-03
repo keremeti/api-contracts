@@ -19,90 +19,90 @@ import (
 const _ = grpc.SupportPackageIsVersion8
 
 const (
-	GetStores_GetList_FullMethodName = "/auth.GetStores/GetList"
+	StoreGiver_GetList_FullMethodName = "/auth.StoreGiver/GetList"
 )
 
-// GetStoresClient is the client API for GetStores service.
+// StoreGiverClient is the client API for StoreGiver service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type GetStoresClient interface {
+type StoreGiverClient interface {
 	GetList(ctx context.Context, in *StoreRequest, opts ...grpc.CallOption) (*StoreResponse, error)
 }
 
-type getStoresClient struct {
+type storeGiverClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewGetStoresClient(cc grpc.ClientConnInterface) GetStoresClient {
-	return &getStoresClient{cc}
+func NewStoreGiverClient(cc grpc.ClientConnInterface) StoreGiverClient {
+	return &storeGiverClient{cc}
 }
 
-func (c *getStoresClient) GetList(ctx context.Context, in *StoreRequest, opts ...grpc.CallOption) (*StoreResponse, error) {
+func (c *storeGiverClient) GetList(ctx context.Context, in *StoreRequest, opts ...grpc.CallOption) (*StoreResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(StoreResponse)
-	err := c.cc.Invoke(ctx, GetStores_GetList_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, StoreGiver_GetList_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// GetStoresServer is the server API for GetStores service.
-// All implementations must embed UnimplementedGetStoresServer
+// StoreGiverServer is the server API for StoreGiver service.
+// All implementations must embed UnimplementedStoreGiverServer
 // for forward compatibility
-type GetStoresServer interface {
+type StoreGiverServer interface {
 	GetList(context.Context, *StoreRequest) (*StoreResponse, error)
-	mustEmbedUnimplementedGetStoresServer()
+	mustEmbedUnimplementedStoreGiverServer()
 }
 
-// UnimplementedGetStoresServer must be embedded to have forward compatible implementations.
-type UnimplementedGetStoresServer struct {
+// UnimplementedStoreGiverServer must be embedded to have forward compatible implementations.
+type UnimplementedStoreGiverServer struct {
 }
 
-func (UnimplementedGetStoresServer) GetList(context.Context, *StoreRequest) (*StoreResponse, error) {
+func (UnimplementedStoreGiverServer) GetList(context.Context, *StoreRequest) (*StoreResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetList not implemented")
 }
-func (UnimplementedGetStoresServer) mustEmbedUnimplementedGetStoresServer() {}
+func (UnimplementedStoreGiverServer) mustEmbedUnimplementedStoreGiverServer() {}
 
-// UnsafeGetStoresServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to GetStoresServer will
+// UnsafeStoreGiverServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to StoreGiverServer will
 // result in compilation errors.
-type UnsafeGetStoresServer interface {
-	mustEmbedUnimplementedGetStoresServer()
+type UnsafeStoreGiverServer interface {
+	mustEmbedUnimplementedStoreGiverServer()
 }
 
-func RegisterGetStoresServer(s grpc.ServiceRegistrar, srv GetStoresServer) {
-	s.RegisterService(&GetStores_ServiceDesc, srv)
+func RegisterStoreGiverServer(s grpc.ServiceRegistrar, srv StoreGiverServer) {
+	s.RegisterService(&StoreGiver_ServiceDesc, srv)
 }
 
-func _GetStores_GetList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _StoreGiver_GetList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(StoreRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GetStoresServer).GetList(ctx, in)
+		return srv.(StoreGiverServer).GetList(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: GetStores_GetList_FullMethodName,
+		FullMethod: StoreGiver_GetList_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GetStoresServer).GetList(ctx, req.(*StoreRequest))
+		return srv.(StoreGiverServer).GetList(ctx, req.(*StoreRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// GetStores_ServiceDesc is the grpc.ServiceDesc for GetStores service.
+// StoreGiver_ServiceDesc is the grpc.ServiceDesc for StoreGiver service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var GetStores_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "auth.GetStores",
-	HandlerType: (*GetStoresServer)(nil),
+var StoreGiver_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "auth.StoreGiver",
+	HandlerType: (*StoreGiverServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "GetList",
-			Handler:    _GetStores_GetList_Handler,
+			Handler:    _StoreGiver_GetList_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

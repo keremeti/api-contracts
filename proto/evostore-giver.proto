@@ -4,7 +4,7 @@ package auth;
 
 option go_package = "github.com/keremeti/api-contracts/gen/evostore-giver";
 
-service GetStores {
+service StoreGiver {
   rpc GetList (StoreRequest) returns (StoreResponse);
 }
 
