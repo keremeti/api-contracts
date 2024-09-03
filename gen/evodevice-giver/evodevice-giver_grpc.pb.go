@@ -19,7 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion8
 
 const (
-	DeviceGiver_GetList_FullMethodName = "/auth.DeviceGiver/GetList"
+	DeviceGiver_GetList_FullMethodName = "/evodevice_giver.DeviceGiver/GetList"
 )
 
 // DeviceGiverClient is the client API for DeviceGiver service.
@@ -97,7 +97,7 @@ func _DeviceGiver_GetList_Handler(srv interface{}, ctx context.Context, dec func
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var DeviceGiver_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "auth.DeviceGiver",
+	ServiceName: "evodevice_giver.DeviceGiver",
 	HandlerType: (*DeviceGiverServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

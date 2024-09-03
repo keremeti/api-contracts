@@ -19,7 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion8
 
 const (
-	StoreGiver_GetList_FullMethodName = "/auth.StoreGiver/GetList"
+	StoreGiver_GetList_FullMethodName = "/evostore_giver.StoreGiver/GetList"
 )
 
 // StoreGiverClient is the client API for StoreGiver service.
@@ -97,7 +97,7 @@ func _StoreGiver_GetList_Handler(srv interface{}, ctx context.Context, dec func(
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var StoreGiver_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "auth.StoreGiver",
+	ServiceName: "evostore_giver.StoreGiver",
 	HandlerType: (*StoreGiverServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

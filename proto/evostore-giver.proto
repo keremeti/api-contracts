@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package auth;
+package evostore_giver;
 
 option go_package = "github.com/keremeti/api-contracts/gen/evostore-giver";
 
@@ -13,11 +13,11 @@ message StoreRequest {
 }
 
 message StoreResponse {
-    repeated Store stores   = 1;
+    repeated Store stores = 1;
 }
 
 message Store {
-    string id   = 1;
+    string id = 1;
 	optional string name = 2;
 	optional string address = 3;
 	string user_id = 4;
