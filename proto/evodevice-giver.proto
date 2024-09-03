@@ -4,7 +4,7 @@ package auth;
 
 option go_package = "github.com/keremeti/api-contracts/gen/evodevice-giver";
 
-service GetStores {
+service DeviceGiver {
   rpc GetList (DeviceRequest) returns (DeviceResponse);
 }
 

@@ -19,90 +19,90 @@ import (
 const _ = grpc.SupportPackageIsVersion8
 
 const (
-	GetStores_GetList_FullMethodName = "/auth.GetStores/GetList"
+	DeviceGiver_GetList_FullMethodName = "/auth.DeviceGiver/GetList"
 )
 
-// GetStoresClient is the client API for GetStores service.
+// DeviceGiverClient is the client API for DeviceGiver service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type GetStoresClient interface {
+type DeviceGiverClient interface {
 	GetList(ctx context.Context, in *DeviceRequest, opts ...grpc.CallOption) (*DeviceResponse, error)
 }
 
-type getStoresClient struct {
+type deviceGiverClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewGetStoresClient(cc grpc.ClientConnInterface) GetStoresClient {
-	return &getStoresClient{cc}
+func NewDeviceGiverClient(cc grpc.ClientConnInterface) DeviceGiverClient {
+	return &deviceGiverClient{cc}
 }
 
-func (c *getStoresClient) GetList(ctx context.Context, in *DeviceRequest, opts ...grpc.CallOption) (*DeviceResponse, error) {
+func (c *deviceGiverClient) GetList(ctx context.Context, in *DeviceRequest, opts ...grpc.CallOption) (*DeviceResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(DeviceResponse)
-	err := c.cc.Invoke(ctx, GetStores_GetList_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, DeviceGiver_GetList_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// GetStoresServer is the server API for GetStores service.
-// All implementations must embed UnimplementedGetStoresServer
+// DeviceGiverServer is the server API for DeviceGiver service.
+// All implementations must embed UnimplementedDeviceGiverServer
 // for forward compatibility
-type GetStoresServer interface {
+type DeviceGiverServer interface {
 	GetList(context.Context, *DeviceRequest) (*DeviceResponse, error)
-	mustEmbedUnimplementedGetStoresServer()
+	mustEmbedUnimplementedDeviceGiverServer()
 }
 
-// UnimplementedGetStoresServer must be embedded to have forward compatible implementations.
-type UnimplementedGetStoresServer struct {
+// UnimplementedDeviceGiverServer must be embedded to have forward compatible implementations.
+type UnimplementedDeviceGiverServer struct {
 }
 
-func (UnimplementedGetStoresServer) GetList(context.Context, *DeviceRequest) (*DeviceResponse, error) {
+func (UnimplementedDeviceGiverServer) GetList(context.Context, *DeviceRequest) (*DeviceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetList not implemented")
 }
-func (UnimplementedGetStoresServer) mustEmbedUnimplementedGetStoresServer() {}
+func (UnimplementedDeviceGiverServer) mustEmbedUnimplementedDeviceGiverServer() {}
 
-// UnsafeGetStoresServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to GetStoresServer will
+// UnsafeDeviceGiverServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to DeviceGiverServer will
 // result in compilation errors.
-type UnsafeGetStoresServer interface {
-	mustEmbedUnimplementedGetStoresServer()
+type UnsafeDeviceGiverServer interface {
+	mustEmbedUnimplementedDeviceGiverServer()
 }
 
-func RegisterGetStoresServer(s grpc.ServiceRegistrar, srv GetStoresServer) {
-	s.RegisterService(&GetStores_ServiceDesc, srv)
+func RegisterDeviceGiverServer(s grpc.ServiceRegistrar, srv DeviceGiverServer) {
+	s.RegisterService(&DeviceGiver_ServiceDesc, srv)
 }
 
-func _GetStores_GetList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _DeviceGiver_GetList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeviceRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GetStoresServer).GetList(ctx, in)
+		return srv.(DeviceGiverServer).GetList(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: GetStores_GetList_FullMethodName,
+		FullMethod: DeviceGiver_GetList_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GetStoresServer).GetList(ctx, req.(*DeviceRequest))
+		return srv.(DeviceGiverServer).GetList(ctx, req.(*DeviceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// GetStores_ServiceDesc is the grpc.ServiceDesc for GetStores service.
+// DeviceGiver_ServiceDesc is the grpc.ServiceDesc for DeviceGiver service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var GetStores_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "auth.GetStores",
-	HandlerType: (*GetStoresServer)(nil),
+var DeviceGiver_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "auth.DeviceGiver",
+	HandlerType: (*DeviceGiverServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "GetList",
-			Handler:    _GetStores_GetList_Handler,
+			Handler:    _DeviceGiver_GetList_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
