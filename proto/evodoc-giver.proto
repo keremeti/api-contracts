@@ -10,12 +10,12 @@ service EvodocGiver {
 }
 
 message DocListRequest {
-  string token = 1;
+  	string token = 1;
 	string store_id = 2; 
-	string device_id = 3;
+	optional string device_id = 3;
 	int64 since = 4;
 	int64 until = 5;
-	string types = 6;
+	repeated string types = 6;
 	string cursor = 7;
 }
 
