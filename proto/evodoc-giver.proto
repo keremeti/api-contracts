@@ -1,14 +1,12 @@
 syntax = "proto3";
 
-package evotor_documents;
-
-import "google/protobuf/any.proto";
+package evodoc_giver;
 
 option go_package = "github.com/keremeti/api-contracts/gen/evodoc-giver";
 
 service EvodocGiver {
-  rpc GetList (DocListRequest) returns (DocResponse);
-  rpc Get (DocRequest) returns (DocsResponse);
+  rpc GetList (DocListRequest) returns (DocListResponse);
+  rpc Get (DocRequest) returns (DocResponse);
 }
 
 message DocListRequest {
@@ -26,10 +24,49 @@ message DocRequest {
 }
 
 message DocResponse {
-  string type = 1;
-  repeated google.protobuf.Any doc = 2;
+  string id              = 1;
+	string type             = 2;
+	string store_id       = 3;
+	string cashier_id     = 4;
+	int64 Date           = 5; 
+	repeated Payment  payments = 6; 
+	optional string CustomerEmail  = 7; 
+	optional string CustomerPhone   = 8; 
+	repeated Position positions       = 9; 
+	double Sum             = 10; 
+	repeated PosPrintResult posPrintResults = 11; 
 }
 
-message DocsResponse {
+message Payment {
+	string type    = 1;
+	double sum      = 2;
+	optional string app_name  = 3;
+}
+
+message Position {
+	string code        = 1;
+	string tare_volume  = 2;
+	string sum         = 3;
+	string result_price = 4;
+	string quantity    = 5;
+	string measure     = 6;
+	string name        = 7;
+}
+
+message PosPrintResult {
+	int64 session_number        = 1;
+	int64 fiscal_document_number = 2;
+	int64 receipt_number        = 3;
+	int64 document_number       = 4;
+	string check_sum             = 5;
+	string kkt_reg_number         = 6;
+	int64 receipt_date          = 7;
+	string kkt_serial_number      = 8;
+	string fiscal_sign_doc_number  = 9;
+	string fn_serial_number       = 10;
+}
+
+message DocListResponse {
   repeated DocResponse docs = 1;
+  string cursor = 2;
 }

@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package evodevice-giver;
+package evodevice_giver;
 
 option go_package = "github.com/keremeti/api-contracts/gen/evodevice-giver";
 
