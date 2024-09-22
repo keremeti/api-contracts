@@ -16,7 +16,7 @@ message DocListRequest {
 	int64 since = 4;
 	int64 until = 5;
 	repeated string types = 6;
-	string cursor = 7;
+	optional string cursor = 7;
 }
 
 message DocRequest {
