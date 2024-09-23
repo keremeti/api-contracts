@@ -30,11 +30,11 @@ message DocResponse {
 	string cashier_id     = 4;
 	int64 Date           = 5; 
 	repeated Payment  payments = 6; 
-	optional string CustomerEmail  = 7; 
-	optional string CustomerPhone   = 8; 
+	optional string customer_email  = 7; 
+	optional string customer_phone   = 8; 
 	repeated Position positions       = 9; 
-	double Sum             = 10; 
-	repeated PosPrintResult posPrintResults = 11; 
+	double sum             = 10; 
+	repeated PosPrintResult pos_print_results = 11; 
 }
 
 message Payment {
@@ -58,7 +58,7 @@ message PosPrintResult {
 	int64 fiscal_document_number = 2;
 	int64 receipt_number        = 3;
 	int64 document_number       = 4;
-	string check_sum             = 5;
+	double check_sum             = 5;
 	optional string kkt_reg_number         = 6;
 	int64 receipt_date          = 7;
 	optional string kkt_serial_number      = 8;
