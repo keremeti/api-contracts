@@ -12,7 +12,7 @@ service EvodocGiver {
 message DocListRequest {
   	string token = 1;
 	string store_id = 2; 
-	//optional string device_id = 3;
+	optional string device_id = 3;
 	int64 since = 4;
 	int64 until = 5;
 	repeated string types = 6;
