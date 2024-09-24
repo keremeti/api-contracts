@@ -59,11 +59,11 @@ message PosPrintResult {
 	int64 receipt_number        = 3;
 	int64 document_number       = 4;
 	double check_sum             = 5;
-	optional string kkt_reg_number         = 6;
+	string kkt_reg_number         = 6;
 	int64 receipt_date          = 7;
-	optional string kkt_serial_number      = 8;
-	optional string fiscal_sign_doc_number  = 9;
-	optional string fn_serial_number       = 10;
+	string kkt_serial_number      = 8;
+	string fiscal_sign_doc_number  = 9;
+	string fn_serial_number       = 10;
 }
 
 message DocListResponse {
