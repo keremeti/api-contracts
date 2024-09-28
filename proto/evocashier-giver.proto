@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package evocashier_giver;
+
+option go_package = "github.com/keremeti/api-contracts/gen/evocashier-giver";
+
+service CashierGiver {
+  rpc GetList (CashierRequest) returns (CashierResponse);
+}
+
+message CashierRequest {
+    string token = 1;
+}
+
+message CashierResponse {
+    repeated Cashier cashiers   = 1;
+}
+
+message Cashier {
+    string id = 1;
+	optional string name = 2;
+    optional string phone = 3;
+    repeated string stores = 4;
+    string role = 5;
+}
