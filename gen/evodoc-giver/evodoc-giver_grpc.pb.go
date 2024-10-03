@@ -11,6 +11,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	anypb "google.golang.org/protobuf/types/known/anypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -28,7 +29,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type EvodocGiverClient interface {
 	GetList(ctx context.Context, in *DocListRequest, opts ...grpc.CallOption) (*DocListResponse, error)
-	Get(ctx context.Context, in *DocRequest, opts ...grpc.CallOption) (*DocResponse, error)
+	Get(ctx context.Context, in *DocRequest, opts ...grpc.CallOption) (*anypb.Any, error)
 }
 
 type evodocGiverClient struct {
@@ -49,9 +50,9 @@ func (c *evodocGiverClient) GetList(ctx context.Context, in *DocListRequest, opt
 	return out, nil
 }
 
-func (c *evodocGiverClient) Get(ctx context.Context, in *DocRequest, opts ...grpc.CallOption) (*DocResponse, error) {
+func (c *evodocGiverClient) Get(ctx context.Context, in *DocRequest, opts ...grpc.CallOption) (*anypb.Any, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(DocResponse)
+	out := new(anypb.Any)
 	err := c.cc.Invoke(ctx, EvodocGiver_Get_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -64,7 +65,7 @@ func (c *evodocGiverClient) Get(ctx context.Context, in *DocRequest, opts ...grp
 // for forward compatibility
 type EvodocGiverServer interface {
 	GetList(context.Context, *DocListRequest) (*DocListResponse, error)
-	Get(context.Context, *DocRequest) (*DocResponse, error)
+	Get(context.Context, *DocRequest) (*anypb.Any, error)
 	mustEmbedUnimplementedEvodocGiverServer()
 }
 
@@ -75,7 +76,7 @@ type UnimplementedEvodocGiverServer struct {
 func (UnimplementedEvodocGiverServer) GetList(context.Context, *DocListRequest) (*DocListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetList not implemented")
 }
-func (UnimplementedEvodocGiverServer) Get(context.Context, *DocRequest) (*DocResponse, error) {
+func (UnimplementedEvodocGiverServer) Get(context.Context, *DocRequest) (*anypb.Any, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 func (UnimplementedEvodocGiverServer) mustEmbedUnimplementedEvodocGiverServer() {}

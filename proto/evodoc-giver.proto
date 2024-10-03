@@ -8,7 +8,7 @@ option go_package = "github.com/keremeti/api-contracts/gen/evodoc-giver";
 
 service EvodocGiver {
   rpc GetList (DocListRequest) returns (DocListResponse);
-  rpc Get (DocRequest) returns (DocResponse);
+  rpc Get (DocRequest) returns (google.protobuf.Any);
 }
 
 message DocListRequest {
@@ -25,7 +25,7 @@ message DocRequest {
   string id = 1;
 }
 
-message DocResponse {
+message SellDocResponse {
   string id              = 1;
 	string type             = 2;
 	string store_id       = 3;
@@ -37,6 +37,21 @@ message DocResponse {
 	repeated Position positions       = 9; 
 	double sum             = 10; 
 	repeated PosPrintResult pos_print_results = 11; 
+}
+
+message PaybackDocResponse {
+  string id              = 1;
+	string type             = 2;
+	string store_id       = 3;
+	string cashier_id     = 4;
+	int64 Date           = 5; 
+	repeated Payment  payments = 6; 
+	optional string customer_email  = 7; 
+	optional string customer_phone   = 8; 
+	repeated Position positions       = 9; 
+	double sum             = 10; 
+	repeated PosPrintResult pos_print_results = 11; 
+	optional string base_doc_id = 12;
 }
 
 message Payment {
@@ -68,10 +83,10 @@ message PosPrintResult {
 	string fn_serial_number       = 10;
 }
 
-message OldDocListResponse {
-  repeated DocResponse docs = 1;
-  string cursor = 2;
-}
+//message DocListResponse {
+//  repeated DocResponse docs = 1;
+//  string cursor = 2;
+//}
 
 message DocListResponse {
   repeated google.protobuf.Any docs = 1;
