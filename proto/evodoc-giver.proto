@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+import "google/protobuf/any.proto";
+
 package evodoc_giver;
 
 option go_package = "github.com/keremeti/api-contracts/gen/evodoc-giver";
@@ -66,7 +68,12 @@ message PosPrintResult {
 	string fn_serial_number       = 10;
 }
 
-message DocListResponse {
+message OldDocListResponse {
   repeated DocResponse docs = 1;
+  string cursor = 2;
+}
+
+message DocListResponse {
+  repeated google.protobuf.Any docs = 1;
   string cursor = 2;
 }

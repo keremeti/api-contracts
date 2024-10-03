@@ -17,3 +17,4 @@ tasks:
       - protoc -I proto proto/evostore-giver.proto --go_out=./gen/evostore-giver/ --go_opt=paths=source_relative --go-grpc_out=./gen/evostore-giver/ --go-grpc_opt=paths=source_relative
       - protoc -I proto proto/evodevice-giver.proto --go_out=./gen/evodevice-giver/ --go_opt=paths=source_relative --go-grpc_out=./gen/evodevice-giver/ --go-grpc_opt=paths=source_relative
       - protoc -I proto proto/evodoc-giver.proto --go_out=./gen/evodoc-giver/ --go_opt=paths=source_relative --go-grpc_out=./gen/evodoc-giver/ --go-grpc_opt=paths=source_relative
+      - protoc -I proto proto/evocashier-giver.proto --go_out=./gen/evocashier-giver/ --go_opt=paths=source_relative --go-grpc_out=./gen/evocashier-giver/ --go-grpc_opt=paths=source_relative
