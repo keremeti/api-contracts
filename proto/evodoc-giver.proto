@@ -92,3 +92,7 @@ message DocListResponse {
   repeated google.protobuf.Any docs = 1;
   string cursor = 2;
 }
+
+message DocTypeResponse {
+  string type             = 1;
+}
