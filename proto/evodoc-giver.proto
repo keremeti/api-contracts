@@ -26,7 +26,44 @@ message DocRequest {
 }
 
 message SellDocResponse {
-  string id              = 1;
+  	string id              = 1;
+	string type             = 2;
+	string store_id       = 3;
+	string cashier_id     = 4;
+	int64 Date           = 5; 
+	repeated Payment  payments = 6; 
+	optional string customer_email  = 7; 
+	optional string customer_phone   = 8; 
+	repeated Position positions       = 9; 
+	double sum             = 10; 
+	repeated PosPrintResult pos_print_results = 11; 
+}
+
+message BuyDocResponse {
+  	string id              = 1;
+	string type             = 2;
+	string store_id       = 3;
+	string cashier_id     = 4;
+	int64 Date           = 5; 
+	repeated Payment  payments = 6; 
+	optional string customer_email  = 7; 
+	optional string customer_phone   = 8; 
+	repeated Position positions       = 9; 
+	double sum             = 10; 
+	repeated PosPrintResult pos_print_results = 11; 
+}
+
+message OpenTareResponse {
+  	string id              = 1;
+	string type             = 2;
+	string store_id       = 3;
+	string cashier_id     = 4;
+	int64 Date           = 5; 
+	repeated OpenTarePosition positions       = 9; 
+}
+
+message CorrectionDocResponse {
+  	string id              = 1;
 	string type             = 2;
 	string store_id       = 3;
 	string cashier_id     = 4;
@@ -40,7 +77,22 @@ message SellDocResponse {
 }
 
 message PaybackDocResponse {
-  string id              = 1;
+  	string id              = 1;
+	string type             = 2;
+	string store_id       = 3;
+	string cashier_id     = 4;
+	int64 Date           = 5; 
+	repeated Payment  payments = 6; 
+	optional string customer_email  = 7; 
+	optional string customer_phone   = 8; 
+	repeated Position positions       = 9; 
+	double sum             = 10; 
+	repeated PosPrintResult pos_print_results = 11; 
+	optional string base_doc_id = 12;
+}
+
+message BuybackDocResponse {
+  	string id              = 1;
 	string type             = 2;
 	string store_id       = 3;
 	string cashier_id     = 4;
@@ -68,6 +120,21 @@ message Position {
 	string quantity    = 5;
 	optional string measure     = 6;
 	optional string name        = 7;
+}
+
+message OpenTarePosition {
+	optional string code        = 1;
+	string tare_volume  = 2;
+	string sum         = 3;
+	string result_price = 4;
+	string quantity    = 5;
+	optional string measure     = 6;
+	optional string name        = 7;
+	string initial_quantity = 8;
+	optional string alcohol_product_kind_code = 9;
+	optional string alcohol_by_volume = 10;
+	string product_id = 11;
+	optional string bar_code = 12;
 }
 
 message PosPrintResult {
