@@ -53,12 +53,12 @@ message BuyDocResponse {
 	repeated PosPrintResult pos_print_results = 11; 
 }
 
-message OpenTareResponse {
+message OpenTareDocResponse {
   	string id              = 1;
 	string type             = 2;
 	string store_id       = 3;
 	string cashier_id     = 4;
-	int64 Date           = 5; 
+	int64 date           = 5; 
 	repeated OpenTarePosition positions       = 9; 
 }
 
@@ -67,7 +67,7 @@ message CorrectionDocResponse {
 	string type             = 2;
 	string store_id       = 3;
 	string cashier_id     = 4;
-	int64 Date           = 5; 
+	int64 date           = 5; 
 	repeated Payment  payments = 6; 
 	optional string customer_email  = 7; 
 	optional string customer_phone   = 8; 
@@ -134,7 +134,7 @@ message OpenTarePosition {
 	optional string alcohol_product_kind_code = 9;
 	optional string alcohol_by_volume = 10;
 	string product_id = 11;
-	optional string bar_code = 12;
+	optional string barcode = 12;
 }
 
 message PosPrintResult {
